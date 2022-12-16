@@ -1,0 +1,63 @@
+<%- include('../../Home/Header'); -%>
+<%- include('../../Home/navBar'); -%>
+
+
+   <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5 pt-5">
+
+        <h2 class="mb-4">View Librarians</h2>
+<%- include('searchLibrarians'); -%>
+        
+<div class="container" style="padding-top:55px">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">FIRST NAME</th>
+      <th scope="col">LASTNAME</th>
+      <th scope="col">TITLE</th>
+
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Tarimo</td>
+      <td>Moshi</td>
+      <td><b>Assistant Librarian</b></td>
+      <td> 
+<button type="submit" class="btn btn-primary" action="/accountant_edit"> EDIT</button>
+      </td>
+    
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jackson</td>
+      <td>Lema</td>
+      <td><b>Assistant Librarian</b></td>
+<td> 
+<button type="button" class="btn btn-primary" disabled="true"> EDIT</button>
+      </td>
+      
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Tarimo</td>
+      <td>Moshi</td>
+      <td><b>Assistant Librarian</b></td>
+<td> 
+<button type="button" class="btn btn-primary" disabled="true"> EDIT</button>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+</div>
+        
+        
+          </div>
+		</div>
+
+
+<%- include('../../Home/Footer'); -%>
