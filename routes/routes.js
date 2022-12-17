@@ -4,6 +4,14 @@ var mysql = require('mysql');
 const con = require('./connection')
 var flash = require('connect-flash');
 
+
+
+// helperFunctions:::
+const userExists = require('./middlewares/userExists');
+const dbPostsQuerries = require('./middlewares/dbPostQueries');
+
+
+
 // Home route
 router.get('/', (req, res) => {
     // rendering the index file here. All files to be rendered will be extracted from the views folder.
@@ -13,25 +21,38 @@ router.get('/', (req, res) => {
 //   Login POST route
 router.post('/login', (req, res) => {  
 //    selecting all rows from the database::
-
+   
      var registration = req.body.registrationNo ;
      var password = req.body.password ;
 
-    // select from the database
-    con.query("SELECT * FROM students WHERE REGISTRATION=? AND PASSWORD=?",[registration,password],function (err,rows,req) {
-        if(err) throw err;
+   //cheking if values exists::
 
-    //  check if fields exist in the database
-    if(rows.length < 1){
-        // credidentials do not match
-        res.redirect('/')
-    }else{
-    var studentName = rows[0].NAME;
-     res.send(`welcome: ${studentName}.`)
-    }
+   con.query("SELECT * FROM users WHERE REGISTRATION=? AND PASSWORD=?",[registration,password],function (err,rows) {
+    if (err) throw err;
+  
+  //  check if fields exist in the database
+  if(rows.length < 1){
+      // credidentials do not match
+   
+   res.redirect('/')
 
-    // if yes..then login,else redirect to login screen.
-    })
+
+    
+  }else{
+// Getting the 
+
+
+
+console.log(rows[0].ROLE)
+res.redirect('/administrator_home')
+
+
+  }
+  
+  // if yes..then login,else redirect to login screen.
+  })
+
+
 
   })
   
@@ -123,6 +144,25 @@ router.get('/administrator_view_librarians',(req,res)=>{
       // administrator add librarians
 router.get('/administrator_add_librarians',(req,res)=>{
   res.render("Administrator/Librarians/addLibrarians/administratorAddLibrarians.ejs")
+  })
+
+        // administrator add librarians POST
+router.post('/administrator_add_librarians_POST',(req,res)=>{
+  // getting the values::
+  var firstName = req.body.firstName;
+  var middleName = req.body.middleName;
+  var lastName = req.body.lastName;
+  var librarianType = req.body.librarianType;
+
+  console.log(firstName);
+  console.log(middleName);
+  console.log(lastName);
+  console.log(librarianType);
+
+  //Adding to database:::
+  dbPostsQuerries.adminAddLibrarian(firstName,middleName,lastName,librarianType);
+
+  res.redirect('/administrator_add_librarians')
   })
   
   
