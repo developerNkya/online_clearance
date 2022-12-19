@@ -39,7 +39,7 @@ router.post('/login', (req, res) => {
 
     
   }else{
-// Getting the 
+//cheking the role:::
 
 
 
@@ -127,27 +127,77 @@ router.get('/administrator_home',(req,res)=>{
   
   // administrator view students
 router.get('/administrator_view_students',(req,res)=>{
-  res.render("Administrator/Students/viewStudents/Table.ejs")
+
+  con.query(" SELECT * FROM students ",function(err,rows){
+    if (err) throw err;
+
+    // getting the values:::
+  
+    
+console.log(rows);
+    res.render("Administrator/Students/viewStudents/Table.ejs",
+    {
+      USER : rows,
+    })
+
+  });
+
   })
   
   // administrator add new student::
 router.get('/administrator_add_students',(req,res)=>{
   res.render("Administrator/Students/addStudents/administratorAddStudent.ejs")
   })
-  
+
+  // administrator Post students
+  router.post('/administrator_add_Student_POST',(req,res)=>{
+
+      // getting the values::
+  var firstName = req.body.firstName;
+  var middleName = req.body.middleName;
+  var lastName = req.body.lastName;
+  var registrationNo = req.body.registrationNo;
+  var level = req.body.level;
+  var course = req.body.course;
+
+  console.log(firstName);
+  console.log(middleName);
+  console.log(lastName);
+
+
+  //Adding to database:::
+  dbPostsQuerries.adminAddStudent(firstName,middleName,lastName,registrationNo,level,course);
+
+    res.redirect('/administrator_add_students')
+  })
+
 
     // administrator view librarian
 router.get('/administrator_view_librarians',(req,res)=>{
-  res.render("Administrator/Librarians/viewLibrarians/Table.ejs")
+  //  GETTING FROM THE DATABASE::
+  con.query(" SELECT * FROM users WHERE ROLE= 'Librarian'",function(err,rows){
+    if (err) throw err;
+
+    // getting the values:::
+  
+    
+
+    res.render("Administrator/Librarians/viewLibrarians/Table.ejs",
+    {
+      USER : rows,
+    })
+
+  });
+
   })
 
       // administrator add librarians
-router.get('/administrator_add_librarians',(req,res)=>{
+router.get('/administrator_add_staff',(req,res)=>{
   res.render("Administrator/Librarians/addLibrarians/administratorAddLibrarians.ejs")
   })
 
         // administrator add librarians POST
-router.post('/administrator_add_librarians_POST',(req,res)=>{
+router.post('/administrator_add_Staff_POST',(req,res)=>{
   // getting the values::
   var firstName = req.body.firstName;
   var middleName = req.body.middleName;
@@ -160,11 +210,50 @@ router.post('/administrator_add_librarians_POST',(req,res)=>{
   console.log(librarianType);
 
   //Adding to database:::
-  dbPostsQuerries.adminAddLibrarian(firstName,middleName,lastName,librarianType);
+  dbPostsQuerries.adminAddStaff(firstName,middleName,lastName,librarianType);
 
-  res.redirect('/administrator_add_librarians')
+  res.redirect('/administrator_add_staff')
   })
   
+
+  //administrator view deans
+    // administrator view students
+router.get('/administrator_view_deans',(req,res)=>{
+
+  con.query(" SELECT * FROM users WHERE ROLE = 'Dean' ",function(err,rows){
+    if (err) throw err;
+
+    // getting the values:::
+  
+    
+console.log(rows);
+    res.render("Administrator/Deans/viewDeans/Table.ejs",
+    {
+      USER : rows,
+    })
+
+  });
+
+  })
+
+  //administrator view HOD
+  router.get('/administrator_view_HOD',(req,res)=>{
+
+    con.query(" SELECT * FROM users WHERE ROLE = 'HOD' ",function(err,rows){
+      if (err) throw err;
+  
+      // getting the values:::
+    
+      
+  console.log(rows);
+      res.render("Administrator/HOD/viewHOD/Table.ejs",
+      {
+        USER : rows,
+      })
+  
+    });
+  
+    })
   
   
   

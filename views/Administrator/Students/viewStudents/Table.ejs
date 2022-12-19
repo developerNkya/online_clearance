@@ -13,43 +13,32 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">STUDENT</th>
+      <th scope="col">FIRSTNAME</th>
+      <th scope="col">LASTNAME</th>
       <th scope="col">REGISTRATION</th>
       <th scope="col">COURSE</th>
+      <th scope="col">LEVEL</th>
       <th scope="col">UPDATE</th>
       
     </tr>
   </thead>
   <tbody>
+    
+    <% USER.forEach((USER) => { %>
     <tr>
-      <th scope="row">1</th>
-      <td>Annet Lambi Anex</td>
-      <td><b>19851005006</b></td>
-      <td>BACHELOR IN COMPUTER SCIENCE</td>
+      <th scope="row"><%=USER.ID %></th>
+      <td><%=USER.FIRSTNAME %></td>
+      <td><%=USER.LASTNAME %></td>
+      <td><b><%=USER.REGISTRATION %></b></td>
+      <td><%=USER.COURSE %></td>
+      <td><%=USER.LEVEL %></td>
       <td> 
 <button type="submit" class="btn btn-primary" action="/accountant_edit"> EDIT</button>
       </td>
     
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Marwa Onesmo Mushi</td>
-      <td>Computer Science</td>
-      <td><b>Pending</b></td>
-<td> 
-<button type="button" class="btn btn-primary" disabled="true"> EDIT</button>
-      </td>
-      
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-       <td>Janeth Also ayro </td>
-      <td>Computer Science</td>
-      <td><b>Pending</b></td>
-<td> 
-<button type="button" class="btn btn-primary" disabled="true"> EDIT</button>
-      </td>
-    </tr>
+    <% }) %>
+  
 
   </tbody>
 </table>
