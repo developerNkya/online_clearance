@@ -191,6 +191,13 @@ router.get('/administrator_view_librarians',(req,res)=>{
 
   })
 
+      // administrator edit librarian
+router.get('/administrator_edit_librarians',(req,res)=>{
+  
+  res.render('Administrator/Librarians/editLibrarians/editLibrarians.ejs') 
+
+  })
+
       // administrator add librarians
 router.get('/administrator_add_staff',(req,res)=>{
   res.render("Administrator/Librarians/addLibrarians/administratorAddLibrarians.ejs")

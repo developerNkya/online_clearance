@@ -21,6 +21,7 @@
     </tr>
   </thead>
   <tbody>
+   
     <% USER.forEach((USER) => { %>
     <tr>    
       <th scope="row"><%=USER.ID %></th>    
@@ -28,10 +29,15 @@
         <td><%=USER.REGISTRATION %></td>
         <td><b><%=USER.ROLE %></b></td>
         <td> 
-          <button type="submit" class="btn btn-primary" action="/accountant_edit"> EDIT</button>
+          <button type="submit" class="btn btn-primary" action="/administrator_edit_librarians"> EDIT</button>
+          <button type="submit" class="btn btn-primary" action="#"> D</button>
         </td>   
+        <td> 
+         
+        </td>  
     </tr>
     <% }) %>
+
 
   </tbody>
 </table>
