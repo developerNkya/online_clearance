@@ -5,7 +5,7 @@ const con = require('./connection')
 var flash = require('connect-flash');
 
 
-
+// simple change to test termux
 // helperFunctions:::
 const userExists = require('./middlewares/userExists');
 const dbPostsQuerries = require('./middlewares/dbPostQueries');
