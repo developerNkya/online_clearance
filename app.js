@@ -40,7 +40,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes)
 
-
 // Listening at Port 3000
 app.listen(port, ()=>{
     console.log(`App is listening on port ${port}`)
