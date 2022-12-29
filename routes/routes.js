@@ -17,6 +17,8 @@ router.get('/', (req, res) => {
     // rendering the index file here. All files to be rendered will be extracted from the views folder.
    res.render('index.ejs')
   })
+  
+
 
 //   Login POST route
 router.post('/login', (req, res) => {  
