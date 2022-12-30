@@ -4,48 +4,54 @@ var mysql = require('mysql');
 const con = require('./connection')
 var flash = require('connect-flash');
 
+var session;
+
 
 // simple change to test termux
+
 // helperFunctions:::
 const userExists = require('./middlewares/userExists');
 const dbPostsQuerries = require('./middlewares/dbPostQueries');
+const helperFunction= require('./middlewares/helperFunctions');
 
+//calling the helper functions::
+const isLoggedIn = helperFunction.isLoggedIn;
+const homeRedirect = helperFunction.homeRedirect;
+const roleCheker = helperFunction.roleCheker;
 
 
 // Home route
-router.get('/', (req, res) => {
-    // rendering the index file here. All files to be rendered will be extracted from the views folder.
-   res.render('index.ejs')
+router.get('/',isLoggedIn,homeRedirect,(req, res) => {
+        // This is the default home route.it will change depending on where the user
+        //logged in and his role
   })
   
-
-
-//   Login POST route
+  //login form 
+router.get('/loginForm',(req, res) => {
+      //the default login form
+      res.render('index.ejs');
+     
+  })
+  
+  
 router.post('/login', (req, res) => {  
 //    selecting all rows from the database::
-   
      var registration = req.body.registrationNo ;
      var password = req.body.password ;
-
    //cheking if values exists::
-
-   con.query("SELECT * FROM users WHERE REGISTRATION=? AND PASSWORD=?",[registration,password],function (err,rows) {
+   con.query("SELECT * FROM STAFF WHERE REG_NO=? AND PASS=?",[registration,password],function (err,rows) {
     if (err) throw err;
-  
   //  check if fields exist in the database
   if(rows.length < 1){
       // credidentials do not match
-   
    res.redirect('/')
-
-
-    
   }else{
 //cheking the role:::
-
-
-
 console.log(rows[0].ROLE)
+        session=req.session;
+        session.userid=req.body.registrationNo;
+        console.log(req.session)
+
 res.redirect('/administrator_home')
 
 
@@ -54,9 +60,13 @@ res.redirect('/administrator_home')
   // if yes..then login,else redirect to login screen.
   })
 
-
-
   })
+
+//logout
+router.post('/logout',(req,res) => {
+    req.session.destroy();
+    res.redirect('/');
+});
   
   // student's homepage ::
   router.get('/student_home',(req,res)=>{
@@ -123,7 +133,7 @@ router.post('/library_edit_post',(req,res)=>{
   })
   
   //administrator home
-router.get('/administrator_home',(req,res)=>{
+router.get('/administrator_home',isLoggedIn,roleCheker('Administrator'),(req,res)=>{
   res.render("Administrator/Home/homeContent.ejs")
   })
   

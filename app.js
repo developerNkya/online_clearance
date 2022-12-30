@@ -4,8 +4,10 @@ const app = express()
 const port = 5000
 
 var flash = require('connect-flash');
-var session = require('express-session')
+var sessions = require('express-session')
 
+
+const cookieParser = require("cookie-parser");
  
 // it will be used for displaying flash messages
 
@@ -13,6 +15,8 @@ var session = require('express-session')
 
 // declaring the routes path
 const routes = require('./routes/routes');
+const login = require('./routes/login');
+
 
 const path = require('path');
 
@@ -36,10 +40,20 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+//session
+const oneDay = 1000 * 60 * 60 * 24;
+app.use(sessions({
+    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+    saveUninitialized:true,
+    cookie: { maxAge: oneDay },
+    resave: false 
+}));
+
+
 // We are going to have many routes in our project. Thats why we moved all routes to separate folder.
 
 app.use('/', routes)
-
+app.use('/login',login)
 // Listening at Port 3000
 app.listen(port, ()=>{
     console.log(`App is listening on port ${port}`)
