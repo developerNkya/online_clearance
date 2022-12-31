@@ -7,17 +7,19 @@ const con = require('../connection')
 
 
 module.exports = {
-    adminAddStaff: function(firstName,middleName,lastName,librarianType){
+    adminAddStaff: function(firstName,secondName,regNo,pass,role){
+                 return async(req,res,next)=>{
 
+                 }
         //adding to the database:::::
-        con.query("INSERT INTO users (USER,REGISTRATION,PASSWORD,ROLE) VALUES (?,?,?,?) ",[firstName,middleName,lastName,librarianType]);
+        
 
 
     },
     adminAddStudent: function(firstName,middleName,lastName,registrationNo,level,course){
 
         //adding to the database:::::
-        con.query("INSERT INTO students (FIRSTNAME,MIDDLENAME,LASTNAME,REGISTRATION,level,course) VALUES (?,?,?,?,?,?) ",[firstName,middleName,lastName,registrationNo,level,course]);
+        con.query("INSERT INTO STUDENTS (FIRSTNAME,MIDDLENAME,LASTNAME,REGISTRATION,LEVEL,COURSE) VALUES (?,?,?,?,?,?) ",[firstName,middleName,lastName,registrationNo,level,course]);
 
 
     },

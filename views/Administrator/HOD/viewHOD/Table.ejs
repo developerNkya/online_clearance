@@ -13,19 +13,22 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">USER</th>
+      <th scope="col">FIRST NAME</th>
+      <th scope="col">LAST NAME</th>
       <th scope="col">REGISTRATION</th>
       <th scope="col">ROLE</th>
+
 
       
     </tr>
   </thead>
   <tbody>
-    <% USER.forEach((USER) => { %>
+    <% USER.forEach((USER,index) => { %>
     <tr>    
-      <th scope="row"><%=USER.ID %></th>    
-        <td><%=USER.USER %></td>
-        <td><%=USER.REGISTRATION %></td>
+        <th scope="row"><%= index +1 %></th> 
+        <td><%=USER.FIRST_NAME %></td>
+        <td><%=USER.LAST_NAME %></td>
+        <td><%=USER.REG_NO %></td>
         <td><b><%=USER.ROLE %></b></td>
         <td> 
           <button type="submit" class="btn btn-primary" action="/accountant_edit"> EDIT</button>

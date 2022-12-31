@@ -138,9 +138,10 @@ router.get('/administrator_home',isLoggedIn,roleCheker('Administrator'),(req,res
   })
   
   // administrator view students
-router.get('/administrator_view_students',(req,res)=>{
+router.get('/administrator_view_students',isLoggedIn,roleCheker('Administrator'),
+(req,res)=>{
 
-  con.query(" SELECT * FROM students ",function(err,rows){
+  con.query(" SELECT * FROM STUDENTS ",function(err,rows){
     if (err) throw err;
 
     // getting the values:::
@@ -157,12 +158,13 @@ console.log(rows);
   })
   
   // administrator add new student::
-router.get('/administrator_add_students',(req,res)=>{
+router.get('/administrator_add_students',isLoggedIn,roleCheker('Administrator'),(req,res)=>{
   res.render("Administrator/Students/addStudents/administratorAddStudent.ejs")
   })
 
   // administrator Post students
-  router.post('/administrator_add_Student_POST',(req,res)=>{
+  router.post('/administrator_add_Student_POST',isLoggedIn,roleCheker('Administrator'),
+  (req,res)=>{
 
       // getting the values::
   var firstName = req.body.firstName;
@@ -185,18 +187,18 @@ router.get('/administrator_add_students',(req,res)=>{
 
 
     // administrator view librarian
-router.get('/administrator_view_librarians',(req,res)=>{
+router.get('/administrator_view_librarians',
+isLoggedIn,roleCheker('Administrator'),
+(req,res)=>{
   //  GETTING FROM THE DATABASE::
-  con.query(" SELECT * FROM users WHERE ROLE= 'Librarian'",function(err,rows){
+  con.query(" SELECT * FROM STAFF WHERE ROLE= 'Librarian'",function(err,rows){
     if (err) throw err;
-
-    // getting the values:::
-  
     
-
+    
+    // getting the values:::
     res.render("Administrator/Librarians/viewLibrarians/Table.ejs",
     {
-      USER : rows,
+      USER : rows
     })
 
   });
@@ -211,41 +213,41 @@ router.get('/administrator_edit_librarians',(req,res)=>{
   })
 
       // administrator add librarians
-router.get('/administrator_add_staff',(req,res)=>{
+router.get('/administrator_add_staff',isLoggedIn,roleCheker('Administrator'),
+(req,res)=>{
   res.render("Administrator/Librarians/addLibrarians/administratorAddLibrarians.ejs")
   })
 
         // administrator add librarians POST
-router.post('/administrator_add_Staff_POST',(req,res)=>{
+router.post('/administrator_add_Staff_POST',isLoggedIn,roleCheker('Administrator'),
+(req,res)=>{
   // getting the values::
   var firstName = req.body.firstName;
-  var middleName = req.body.middleName;
-  var lastName = req.body.lastName;
-  var librarianType = req.body.librarianType;
+  var secondName = req.body.secondName;
+  var regNo = req.body.regNo;
+  var pass = req.body.pass;
+  var role = req.body.role;
+  
+            con.query("INSERT INTO STAFF (FIRST_NAME,LAST_NAME,REG_NO,PASS,ROLE) VALUES (?,?,?,?,?) ",[firstName,secondName,regNo,pass,role],(err,rows)=>{
+              if (err) throw err;
+              else{
+                console.log(rows);
+             res.redirect('/administrator_add_staff')
+              }
+            });
 
-  console.log(firstName);
-  console.log(middleName);
-  console.log(lastName);
-  console.log(librarianType);
-
-  //Adding to database:::
-  dbPostsQuerries.adminAddStaff(firstName,middleName,lastName,librarianType);
-
-  res.redirect('/administrator_add_staff')
   })
   
 
   //administrator view deans
     // administrator view students
-router.get('/administrator_view_deans',(req,res)=>{
+router.get('/administrator_view_deans',isLoggedIn,roleCheker('Administrator'),
+(req,res)=>{
 
-  con.query(" SELECT * FROM users WHERE ROLE = 'Dean' ",function(err,rows){
+  con.query(" SELECT * FROM STAFF WHERE ROLE = 'Dean' ",function(err,rows){
     if (err) throw err;
 
-    // getting the values:::
-  
-    
-console.log(rows);
+    // getting the values:
     res.render("Administrator/Deans/viewDeans/Table.ejs",
     {
       USER : rows,
@@ -256,9 +258,10 @@ console.log(rows);
   })
 
   //administrator view HOD
-  router.get('/administrator_view_HOD',(req,res)=>{
+  router.get('/administrator_view_HOD',isLoggedIn,roleCheker('Administrator'),
+  (req,res)=>{
 
-    con.query(" SELECT * FROM users WHERE ROLE = 'HOD' ",function(err,rows){
+    con.query(" SELECT * FROM STAFF go WHERE ROLE = 'HOD' ",function(err,rows){
       if (err) throw err;
   
       // getting the values:::

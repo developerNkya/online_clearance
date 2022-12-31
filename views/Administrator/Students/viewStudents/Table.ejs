@@ -24,9 +24,9 @@
   </thead>
   <tbody>
     
-    <% USER.forEach((USER) => { %>
+    <% USER.forEach((USER,index) => { %>
     <tr>
-      <th scope="row"><%=USER.ID %></th>
+      <th scope="row"><%= index +1 %></th>
       <td><%=USER.FIRSTNAME %></td>
       <td><%=USER.LASTNAME %></td>
       <td><b><%=USER.REGISTRATION %></b></td>
