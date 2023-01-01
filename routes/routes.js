@@ -18,7 +18,7 @@ const helperFunction= require('./middlewares/helperFunctions');
 const isLoggedIn = helperFunction.isLoggedIn;
 const homeRedirect = helperFunction.homeRedirect;
 const roleCheker = helperFunction.roleCheker;
-
+const fetchUserDetails = helperFunction.fetchUserDetails;
 
 // Home route
 router.get('/',isLoggedIn,homeRedirect,(req, res) => {
@@ -47,7 +47,6 @@ router.post('/login', (req, res) => {
    res.redirect('/')
   }else{
 //cheking the role:::
-console.log(rows[0].ROLE)
         session=req.session;
         session.userid=req.body.registrationNo;
         console.log(req.session)
@@ -144,10 +143,7 @@ router.get('/administrator_view_students',isLoggedIn,roleCheker('Administrator')
   con.query(" SELECT * FROM STUDENTS ",function(err,rows){
     if (err) throw err;
 
-    // getting the values:::
-  
-    
-console.log(rows);
+    // getting the values:
     res.render("Administrator/Students/viewStudents/Table.ejs",
     {
       USER : rows,
@@ -174,11 +170,7 @@ router.get('/administrator_add_students',isLoggedIn,roleCheker('Administrator'),
   var level = req.body.level;
   var course = req.body.course;
 
-  console.log(firstName);
-  console.log(middleName);
-  console.log(lastName);
-
-
+  
   //Adding to database:::
   dbPostsQuerries.adminAddStudent(firstName,middleName,lastName,registrationNo,level,course);
 
@@ -187,23 +179,12 @@ router.get('/administrator_add_students',isLoggedIn,roleCheker('Administrator'),
 
 
     // administrator view librarian
-router.get('/administrator_view_librarians',
-isLoggedIn,roleCheker('Administrator'),
+router.get('/administrator_view_librarians',isLoggedIn,roleCheker('Administrator'),
+fetchUserDetails('Librarian'),
 (req,res)=>{
-  //  GETTING FROM THE DATABASE::
-  con.query(" SELECT * FROM STAFF WHERE ROLE= 'Librarian'",function(err,rows){
-    if (err) throw err;
-    
-    
-    // getting the values:::
-    res.render("Administrator/Librarians/viewLibrarians/Table.ejs",
-    {
-      USER : rows
-    })
-
+        //handled in the helper function
   });
 
-  })
 
       // administrator edit librarian
 router.get('/administrator_edit_librarians',(req,res)=>{
@@ -213,9 +194,10 @@ router.get('/administrator_edit_librarians',(req,res)=>{
   })
 
       // administrator add librarians
-router.get('/administrator_add_staff',isLoggedIn,roleCheker('Administrator'),
+router.get('/administrator_add_staff',
+isLoggedIn,roleCheker('Administrator'),
 (req,res)=>{
-  res.render("Administrator/Librarians/addLibrarians/administratorAddLibrarians.ejs")
+  res.render("Administrator/staff/addStaff/addStaff.ejs")
   })
 
         // administrator add librarians POST
@@ -231,7 +213,7 @@ router.post('/administrator_add_Staff_POST',isLoggedIn,roleCheker('Administrator
             con.query("INSERT INTO STAFF (FIRST_NAME,LAST_NAME,REG_NO,PASS,ROLE) VALUES (?,?,?,?,?) ",[firstName,secondName,regNo,pass,role],(err,rows)=>{
               if (err) throw err;
               else{
-                console.log(rows);
+                
              res.redirect('/administrator_add_staff')
               }
             });
@@ -240,42 +222,28 @@ router.post('/administrator_add_Staff_POST',isLoggedIn,roleCheker('Administrator
   
 
   //administrator view deans
-    // administrator view students
+    // 
 router.get('/administrator_view_deans',isLoggedIn,roleCheker('Administrator'),
+fetchUserDetails('Dean'),
 (req,res)=>{
-
-  con.query(" SELECT * FROM STAFF WHERE ROLE = 'Dean' ",function(err,rows){
-    if (err) throw err;
-
-    // getting the values:
-    res.render("Administrator/Deans/viewDeans/Table.ejs",
-    {
-      USER : rows,
-    })
-
+       // handled in helperFunction
   });
-
-  })
 
   //administrator view HOD
   router.get('/administrator_view_HOD',isLoggedIn,roleCheker('Administrator'),
+fetchUserDetails('HOD'),
   (req,res)=>{
-
-    con.query(" SELECT * FROM STAFF go WHERE ROLE = 'HOD' ",function(err,rows){
-      if (err) throw err;
-  
-      // getting the values:::
-    
-      
-  console.log(rows);
-      res.render("Administrator/HOD/viewHOD/Table.ejs",
-      {
-        USER : rows,
-      })
-  
-    });
-  
+   //handled in helper function
     })
+  
+  //testing route
+router.get('/testing_route',fetchUserDetails('Librarian'),
+//isLoggedIn,roleCheker('Administrator'),
+  (req,res,next)=>{
+  
+  });
+
+    
   
   
   

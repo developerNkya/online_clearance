@@ -5,8 +5,8 @@
    <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5 pt-5">
 
-        <h2 class="mb-4">View Deans</h2>
-<%- include('searchLibrarians'); -%>
+        <h2 class="mb-4">View <%=ROLE %> </h2>
+<%- include('searchStaff'); -%>
         
 <div class="container" style="padding-top:55px">
 <table class="table table-striped">
@@ -25,8 +25,8 @@
   <tbody>
     <% USER.forEach((USER,index) => { %>
     <tr>    
-      <th scope="row"><%= index +1 %></th>    
-       <td><%=USER.FIRST_NAME %></td>
+        <th scope="row"><%= index +1 %></th> 
+        <td><%=USER.FIRST_NAME %></td>
         <td><%=USER.LAST_NAME %></td>
         <td><%=USER.REG_NO %></td>
         <td><b><%=USER.ROLE %></b></td>

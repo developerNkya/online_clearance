@@ -49,10 +49,10 @@ roleCheker:function (roleValue){
         else{
           userRole =rows[0].ROLE;
           if(userRole==roleValue){
-            console.log(`role is ${roleValue}`)
+          
             next();
           }else{
-            console.log('role is not admin')
+           
             res.redirect('/loginForm')
           }
         }
@@ -62,5 +62,23 @@ roleCheker:function (roleValue){
 
 },
 
+fetchUserDetails: function(role){
+  return async(req,res,next)=>{
+  con.query(" SELECT * FROM STAFF WHERE ROLE=?",[role],function(err,rows){
+    if (err) throw err;
+    else{
+req.userDetails = rows;
+   res.render('Administrator/staff/viewStaff/viewStaff.ejs',
+    {
+      USER : rows,
+      ROLE : role
+    })
+    }
+       
+
+  });
+
+  }
+}
 
 }
