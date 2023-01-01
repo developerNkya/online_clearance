@@ -28,10 +28,17 @@
         <th scope="row"><%= index +1 %></th> 
         <td><%=USER.FIRST_NAME %></td>
         <td><%=USER.LAST_NAME %></td>
-        <td><%=USER.REG_NO %></td>
+        <td name='regNo'><%=USER.REG_NO %></td>
         <td><b><%=USER.ROLE %></b></td>
         <td> 
-          <button type="submit" class="btn btn-primary" action="/accountant_edit"> EDIT</button>
+        
+          <form method="post" action="/administrator_edit_users">
+            <button type="submit" class="btn btn-primary mb-2" >Edit</button>
+            
+                <input type="text" id="lname" name="regNo" value="<%=USER.REG_NO%>" style="display:none">
+              </div>
+          </form>
+          
         </td>   
     </tr>
     <% }) %>

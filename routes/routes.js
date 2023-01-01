@@ -19,6 +19,7 @@ const isLoggedIn = helperFunction.isLoggedIn;
 const homeRedirect = helperFunction.homeRedirect;
 const roleCheker = helperFunction.roleCheker;
 const fetchUserDetails = helperFunction.fetchUserDetails;
+const adminEditPage = helperFunction.adminEditPage;
 
 // Home route
 router.get('/',isLoggedIn,homeRedirect,(req, res) => {
@@ -179,7 +180,7 @@ router.get('/administrator_add_students',isLoggedIn,roleCheker('Administrator'),
 
 
     // administrator view librarian
-router.get('/administrator_view_librarians',isLoggedIn,roleCheker('Administrator'),
+router.get('/administrator_view_Librarian',isLoggedIn,roleCheker('Administrator'),
 fetchUserDetails('Librarian'),
 (req,res)=>{
         //handled in the helper function
@@ -223,8 +224,15 @@ router.post('/administrator_add_Staff_POST',isLoggedIn,roleCheker('Administrator
 
   //administrator view deans
     // 
-router.get('/administrator_view_deans',isLoggedIn,roleCheker('Administrator'),
+router.get('/administrator_view_Dean',isLoggedIn,roleCheker('Administrator'),
 fetchUserDetails('Dean'),
+(req,res)=>{
+       // handled in helperFunction
+  });
+  
+  //administrator view accountant
+router.get('/administrator_view_Accountant',isLoggedIn,roleCheker('Administrator'),
+fetchUserDetails('Accountant'),
 (req,res)=>{
        // handled in helperFunction
   });
@@ -237,11 +245,69 @@ fetchUserDetails('HOD'),
     })
   
   //testing route
-router.get('/testing_route',fetchUserDetails('Librarian'),
-//isLoggedIn,roleCheker('Administrator'),
+router.post('/administrator_edit_users',
+isLoggedIn,roleCheker('Administrator'),
   (req,res,next)=>{
+    regNo=req.body.regNo;
+            con.query("SELECT * FROM STAFF WHERE REG_NO=?",[regNo],(err,rows)=>{
+              if (err) throw err;
+              else{
+                console.log(rows[0])
+             res.render('Administrator/staff/editStaff/editStaff.ejs',
+                {
+                  USER : rows[0]
+                }
+             )
+              }
+            });
+           
+   
+    })
+    
+    //students editing page
+router.post('/administrator_edit_students',
+isLoggedIn,roleCheker('Administrator'),
+  (req,res,next)=>{
+    regNo=req.body.regNo;
+            con.query("SELECT * FROM STUDENT WHERE REG_NO=?",[regNo],(err,rows)=>{
+              if (err) throw err;
+              else{
+                console.log(rows[0])
+             res.render('Administrator/staff/editStaff/editStaff.ejs',
+                {
+                  USER : rows[0]
+                }
+             )
+              }
+            });
+           
+   
+    })
+    
+    
+    
+    //editing user info
+router.post('/administrator_edit_Staff_POST',isLoggedIn,roleCheker('Administrator'),
+(req,res)=>{
+  // getting the values::
+  var firstName = req.body.firstName;
+  var secondName = req.body.secondName;
+  var regNo = req.body.regNo;
+  var pass = req.body.pass;
+  var role = req.body.role;
+  var ID = req.body.ID;
   
-  });
+            con.query("UPDATE STAFF  SET FIRST_NAME=?,LAST_NAME=?,REG_NO=?,PASS=?,ROLE=? WHERE ID =? ",[firstName,secondName,regNo,pass,role,ID],(err,rows)=>{
+              if (err) throw err;
+              else{
+                
+             res.redirect(`/administrator_view_${role}`)
+              }
+            });
+
+  })
+  
+    
 
     
   

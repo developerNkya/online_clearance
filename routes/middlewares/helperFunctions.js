@@ -79,6 +79,28 @@ req.userDetails = rows;
   });
 
   }
+},
+
+// editing user details(Admins role)::
+adminEditPage: function(regNo){
+  return async(req,res,next)=>{
+  con.query(" SELECT * FROM STAFF WHERE REG_NO=?",[regNo],function(err,rows){
+    if (err) throw err;
+    else{
+   
+   res.render('Administrator/staff/editStaff/editStaff.ejs',
+    {
+      USER : rows,
+     
+    })
+    }
+       
+
+  });
+
+  }
 }
+
+
 
 }

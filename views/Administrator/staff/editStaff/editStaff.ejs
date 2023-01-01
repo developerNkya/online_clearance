@@ -1,0 +1,52 @@
+<%- include('../../Home/Header'); -%>
+<%- include('../../Home/navBar'); -%>
+
+ <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5 pt-5">
+
+        <h2 class="mb-4">Edit <%=USER.ROLE%> </h2>
+        <div class ="container">
+      <form method= "POST" action="/administrator_edit_Staff_POST">
+  <div class="form-group" >
+    <label for="exampleFormControlInput1">First Name </label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="<%=USER.FIRST_NAME%>..." name="firstName">
+  </div>
+  
+<div class="form-group" >
+    <label for="exampleFormControlInput1">Second Name</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="<%=USER.LAST_NAME%>..." name="secondName">
+  </div>
+  
+  
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Registration No</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="eg <%=USER.REG_NO%>..." name="regNo">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">New Password</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=".<%=USER.PASS%>..." name="pass">
+  </div>
+  
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Role/Cartegory</label>
+    <label for="exampleFormControlSelect1"><b>(Currently</b>:<%=USER.ROLE%>)</label>
+    <select class="form-control" id="exampleFormControlSelect1" name="role">
+      <option>Dean</option>
+      <option>Librarian</option>
+      <option>Accountant</option>
+      <option>HOD</option>
+    </select>
+  </div>
+  <br>
+<button type="submit" class="btn btn-primary" style="justify-content:center">Submit</button>
+ 
+ <input type="text" id="lname" name="ID" value="<%=USER.ID%>" style="display:none">
+</form>
+</div>
+      </div>
+		</div>
+
+
+
+
+<%- include('../../Home/Footer'); -%>
