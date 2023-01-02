@@ -245,6 +245,52 @@ fetchUserDetails('HOD'),
     })
   
   //testing route
+
+    
+    //students editing page
+router.post('/administrator_edit_students',
+isLoggedIn,roleCheker('Administrator'),
+  (req,res,next)=>{
+    regNo=req.body.regNo;
+            con.query("SELECT * FROM STUDENTS WHERE REGISTRATION=?",[regNo],(err,rows)=>{
+              if (err) throw err;
+              else{
+                console.log(rows)
+             res.render('Administrator/Students/editStudents/editStudents.ejs',
+                {
+                  USER : rows[0]
+                }
+             )
+              }
+            });
+           
+   
+    })
+    
+    //edit student post
+router.post('/administrator_edit_Student_POST',isLoggedIn,roleCheker('Administrator'),
+(req,res)=>{
+  // getting the values::
+  var firstName = req.body.firstName;
+  var middleName = req.body.middleName;
+  var lastName = req.body.lastName;
+  var registrationNo = req.body.registrationNo;
+  var level = req.body.level;
+  var course = req.body.course;
+ var ID = req.body.ID;
+  
+            con.query("UPDATE STUDENTS  SET FIRSTNAME=?,MIDDLENAME=?,LASTNAME=?, REGISTRATION=?,LEVEL=?,COURSE=? WHERE ID =? ",[firstName,middleName,lastName,registrationNo,level,course,ID],(err,rows)=>{
+              if (err) throw err;
+              else{
+                
+             res.redirect('/administrator_view_students')
+              }
+            });
+
+  })
+  
+ //administrator edit users Page
+  //testing route
 router.post('/administrator_edit_users',
 isLoggedIn,roleCheker('Administrator'),
   (req,res,next)=>{
@@ -263,27 +309,6 @@ isLoggedIn,roleCheker('Administrator'),
            
    
     })
-    
-    //students editing page
-router.post('/administrator_edit_students',
-isLoggedIn,roleCheker('Administrator'),
-  (req,res,next)=>{
-    regNo=req.body.regNo;
-            con.query("SELECT * FROM STUDENT WHERE REG_NO=?",[regNo],(err,rows)=>{
-              if (err) throw err;
-              else{
-                console.log(rows[0])
-             res.render('Administrator/staff/editStaff/editStaff.ejs',
-                {
-                  USER : rows[0]
-                }
-             )
-              }
-            });
-           
-   
-    })
-    
     
     
     //editing user info

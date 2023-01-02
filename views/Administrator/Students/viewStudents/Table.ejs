@@ -33,7 +33,13 @@
       <td><%=USER.COURSE %></td>
       <td><%=USER.LEVEL %></td>
       <td> 
-<button type="submit" class="btn btn-primary" action="/accountant_edit"> EDIT</button>
+          <form method="post" action="/administrator_edit_students">
+            <button type="submit" class="btn btn-primary mb-2" >Edit</button>
+            
+                <input type="text" id="lname" name="regNo" value="<%=USER.REGISTRATION%>" style="display:none">
+              </div>
+          </form> 
+
       </td>
     
     </tr>
