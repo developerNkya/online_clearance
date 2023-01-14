@@ -54,7 +54,7 @@ router.post('/login', (req, res) => {
 //req.flash('message', 'Incorrect credidentials,Try agai'); 
   
    //check if user is student.
-   con.query("SELECT * FROM STUDENTS WHERE REGISTRATION=?",[registration],function (err,rows) {
+   con.query("SELECT * FROM STUDENTS WHERE REGISTRATION=? AND PASSWORD=?",[registration,password],function (err,rows) {
      if (err) throw err;
      else if (rows.length <1){
        res.redirect('/')
@@ -174,7 +174,7 @@ isLoggedIn,staffCheker,
   
   // student home:
  router.get('/student_home',
-//isLoggedIn,studentCheker,
+isLoggedIn,studentCheker,
 (req,res)=>{
  userReg = req.session.userid;
  console.log(userReg);
@@ -187,16 +187,41 @@ isLoggedIn,staffCheker,
   
   // student View clearance
   router.get('/studentView_clearance',
-//isLoggedIn,studentCheker,
+isLoggedIn,studentCheker,
 (req,res)=>{
  userReg = req.session.userid;
  console.log(userReg);
+ //getting the data of the student:
+con.query(" SELECT * FROM STUDENTS WHERE REGISTRATION=? ",[userReg],function(err,rows){
+  if (err) throw err;
+  else{
+    //send the data to front end:
+    var Overall = [];
+    
+    //listing the rows::
+    var deanStatus = rows[0].DEAN;
+    var ACCOUNTANT = rows[0].ACCOUNTANT;
+    var HOD = rows[0].HOD;
+    var LIBRARIAN = rows[0].LIBRARIAN;
+    
+    if(deanStatus == 'CONFIRMED' && ACCOUNTANT == 'CONFIRMED' && HOD == 'CONFIRMED' && LIBRARIAN== 'CONFIRMED'){
+              Overall.push('CONFIRMED');
+    }else{
+       Overall.push('NOT VERIFIED');
+    }
+    
+    console.log(Overall);
+    res.render("Students/ClearancePage/ClearancePage.ejs",{
+   USER : rows[0],
+   OVERALL : Overall
+   
+  })
+    
+  }
+})
  
  
- res.render("Students/ClearancePage/ClearancePage.ejs")
- //res.render("StaffPages/Home/homeContent.ejs"),{
- //  userReg : userReg
- // }
+ 
   })
   
   //
@@ -297,12 +322,13 @@ router.get('/administrator_add_students',isLoggedIn,roleCheker('Administrator'),
   var middleName = req.body.middleName;
   var lastName = req.body.lastName;
   var registrationNo = req.body.registrationNo;
+  var password = req.body.password;
   var level = req.body.level;
   var course = req.body.course;
 
   
   //Adding to database:::
-  dbPostsQuerries.adminAddStudent(firstName,middleName,lastName,registrationNo,level,course);
+  dbPostsQuerries.adminAddStudent(firstName,middleName,lastName,registrationNo,password,level,course);
 
     res.redirect('/administrator_add_students')
   })
@@ -456,11 +482,12 @@ router.post('/administrator_edit_Student_POST',isLoggedIn,roleCheker('Administra
   var middleName = req.body.middleName;
   var lastName = req.body.lastName;
   var registrationNo = req.body.registrationNo;
+  var password = req.body.password;
   var level = req.body.level;
   var course = req.body.course;
  var ID = req.body.ID;
   
-            con.query("UPDATE STUDENTS  SET FIRSTNAME=?,MIDDLENAME=?,LASTNAME=?, REGISTRATION=?,LEVEL=?,COURSE=? WHERE ID =? ",[firstName,middleName,lastName,registrationNo,level,course,ID],(err,rows)=>{
+            con.query("UPDATE STUDENTS  SET FIRSTNAME=?,MIDDLENAME=?,LASTNAME=?, REGISTRATION=?,PASSWORD=?,LEVEL=?,COURSE=? WHERE ID =? ",[firstName,middleName,lastName,registrationNo,password,level,course,ID],(err,rows)=>{
               if (err) throw err;
               else{
                 
@@ -546,13 +573,6 @@ router.post('/administrator_edit_Staff_POST',isLoggedIn,roleCheker('Administrato
             });
 
   })
-  
-    
-
-    
-  
-  
-  
   
 
   module.exports = router

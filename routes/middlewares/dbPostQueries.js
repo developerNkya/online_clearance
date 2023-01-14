@@ -16,10 +16,10 @@ module.exports = {
 
 
     },
-    adminAddStudent: function(firstName,middleName,lastName,registrationNo,level,course){
+    adminAddStudent: function(firstName,middleName,lastName,registrationNo,password,level,course){
        var val = 'UnApproved';
         //adding to the database:::::
-        con.query("INSERT INTO STUDENTS (FIRSTNAME,MIDDLENAME,LASTNAME,REGISTRATION,LEVEL,COURSE,DEAN, ACCOUNTANT,HOD,LIBRARIAN) VALUES (?,?,?,?,?,?,?,?,?,?) ",[firstName,middleName,lastName,registrationNo,level,course,val,val,val,val]);
+        con.query("INSERT INTO STUDENTS (FIRSTNAME,MIDDLENAME,LASTNAME,REGISTRATION,PASSWORD,LEVEL,COURSE,DEAN, ACCOUNTANT,HOD,LIBRARIAN) VALUES (?,?,?,?,?,?,?,?,?,?) ",[firstName,middleName,lastName,registrationNo,password,level,course,val,val,val,val]);
 
 
     },
