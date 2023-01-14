@@ -1,3 +1,4 @@
+
 const express = require('express')
 const router = express.Router()
 var mysql = require('mysql');
@@ -16,10 +17,13 @@ const helperFunction= require('./middlewares/helperFunctions');
 
 //calling the helper functions::
 const isLoggedIn = helperFunction.isLoggedIn;
+
 const homeRedirect = helperFunction.homeRedirect;
 const roleCheker = helperFunction.roleCheker;
 const fetchUserDetails = helperFunction.fetchUserDetails;
 const adminEditPage = helperFunction.adminEditPage;
+const staffCheker = helperFunction.staffCheker;
+const studentCheker = helperFunction.studentCheker;
 
 // Home route
 router.get('/',isLoggedIn,homeRedirect,(req, res) => {
@@ -30,7 +34,9 @@ router.get('/',isLoggedIn,homeRedirect,(req, res) => {
   //login form 
 router.get('/loginForm',(req, res) => {
       //the default login form
-      res.render('index.ejs');
+      failedLogin=req.flash('message');
+      console.log(failedLogin)
+      res.render('index.ejs',{message: failedLogin});
      
   })
   
@@ -45,15 +51,36 @@ router.post('/login', (req, res) => {
   //  check if fields exist in the database
   if(rows.length < 1){
       // credidentials do not match
-   res.redirect('/')
+//req.flash('message', 'Incorrect credidentials,Try agai'); 
+  
+   //check if user is student.
+   con.query("SELECT * FROM STUDENTS WHERE REGISTRATION=?",[registration],function (err,rows) {
+     if (err) throw err;
+     else if (rows.length <1){
+       res.redirect('/')
+     }else{
+       //adding student details to session
+       
+       session=req.session;
+       session.userid=req.body.registrationNo;
+        
+        session.userRole = 'STUDENT';
+        console.log(session)
+        
+        res.redirect('/')
+            
+     }
+   })
+   
   }else{
 //cheking the role:::
         session=req.session;
         session.userid=req.body.registrationNo;
-        console.log(req.session)
-
-res.redirect('/administrator_home')
-
+        
+        session.userRole =rows[0].ROLE;
+            
+       // console.log(req.session)
+  res.redirect('/')
 
   }
   
@@ -68,10 +95,6 @@ router.post('/logout',(req,res) => {
     res.redirect('/');
 });
   
-  // student's homepage ::
-  router.get('/student_home',(req,res)=>{
-    res.render('student/Homepage/Table.ejs')
-  })
   
   // Route for accountant home:
 router.get('/accountant_home',(req,res)=>{
@@ -136,6 +159,112 @@ router.post('/library_edit_post',(req,res)=>{
 router.get('/administrator_home',isLoggedIn,roleCheker('Administrator'),(req,res)=>{
   res.render("Administrator/Home/homeContent.ejs")
   })
+  
+  //staff home page
+router.get('/staff_home',
+isLoggedIn,staffCheker,
+(req,res)=>{
+ userReg = req.session.userid;
+ console.log(userReg);
+ 
+ res.render("StaffPages/Home/homeContent.ejs"),{
+   userReg : userReg
+ }
+  })
+  
+  // student home:
+ router.get('/student_home',
+//isLoggedIn,studentCheker,
+(req,res)=>{
+ userReg = req.session.userid;
+ console.log(userReg);
+ 
+ res.render("Students/Home/homeContent")
+ //res.render("StaffPages/Home/homeContent.ejs"),{
+ //  userReg : userReg
+ // }
+  })
+  
+  // student View clearance
+  router.get('/studentView_clearance',
+//isLoggedIn,studentCheker,
+(req,res)=>{
+ userReg = req.session.userid;
+ console.log(userReg);
+ 
+ 
+ res.render("Students/ClearancePage/ClearancePage.ejs")
+ //res.render("StaffPages/Home/homeContent.ejs"),{
+ //  userReg : userReg
+ // }
+  })
+  
+  //
+router.get('/staffView_Students',
+isLoggedIn,staffCheker,
+(req,res)=>{
+con.query(" SELECT * FROM STUDENTS ",function(err,rows){
+    if (err) throw err;
+  userRole = req.session.userRole;
+  userRole1 = userRole.toUpperCase();
+   
+   var status = [];
+   if(userRole1 == 'DEAN'){
+     rows.forEach((row,index)=>{
+       status.push(
+         Object.values(row)[7]
+         )
+     })
+   }else if(userRole1 == 'ACCOUNTANT'){
+     rows.forEach((row,index)=>{
+       status.push(
+         Object.values(row)[8]
+         )
+     })
+   }else if(userRole1 == 'HOD'){
+     rows.forEach((row,index)=>{
+       status.push(
+         Object.values(row)[9]
+         )
+     })
+   }else if(userRole1 == 'LIBRARIAN'){
+     rows.forEach((row,index)=>{
+       status.push(
+         Object.values(row)[10]
+         )
+     })
+   }
+  
+ // initialize a temporary object:
+ var obj = [];
+ // make loop to add items to object::
+rows.forEach((row,index) => {
+    obj.push(
+         {
+          "ID":Object.values(row)[0],
+          "FIRSTNAME":Object.values(row)[1],
+          "MIDDLENAME":Object.values(row)[2],
+          "LASTNAME":Object.values(row)[3],
+          "REGISTRATION":Object.values(row)[4],
+          "LEVEL":Object.values(row)[5],
+          "COURSE":Object.values(row)[6],
+          "STATUS" : status[index]
+         }
+         
+      )
+});
+   console.log(Math.random());
+    console.log(rows);
+     res.render("StaffPages/Students/viewStudents/Table.ejs",
+    {
+       USER : obj,
+      USER_ROLE : userRole1
+    })
+  });
+
+  })
+  
+
   
   // administrator view students
 router.get('/administrator_view_students',isLoggedIn,roleCheker('Administrator'),
@@ -267,6 +396,58 @@ isLoggedIn,roleCheker('Administrator'),
    
     })
     
+    //staff edit page
+router.post('/staff_edit_students',
+isLoggedIn,staffCheker,
+  (req,res,next)=>{
+    regNo=req.body.regNo;
+            con.query("SELECT * FROM STUDENTS WHERE REGISTRATION=?",[regNo],(err,rows)=>{
+              if (err) throw err;
+              else{
+              
+               userRole = req.session.userRole;
+               userRole1 = userRole.toUpperCase();
+   
+   var status = [];
+   if(userRole1 == 'DEAN'){
+     rows.forEach((row,index)=>{
+       status.push(
+         Object.values(row)[7]
+         )
+     })
+   }else if(userRole1 == 'ACCOUNTANT'){
+     rows.forEach((row,index)=>{
+       status.push(
+         Object.values(row)[8]
+         )
+     })
+   }else if(userRole1 == 'HOD'){
+     rows.forEach((row,index)=>{
+       status.push(
+         Object.values(row)[9]
+         )
+     })
+   }else if(userRole1 == 'LIBRARIAN'){
+     rows.forEach((row,index)=>{
+       status.push(
+         Object.values(row)[10]
+         )
+     })
+   }
+         console.log(Math.random(3));
+          console.log(status);
+             res.render('StaffPages/Students/editStudents/editStudents.ejs',
+                {
+                  USER : rows[0],
+                  STATUS : status[0]
+                }
+             )
+              }
+            });
+           
+   
+    })
+    
     //edit student post
 router.post('/administrator_edit_Student_POST',isLoggedIn,roleCheker('Administrator'),
 (req,res)=>{
@@ -288,6 +469,40 @@ router.post('/administrator_edit_Student_POST',isLoggedIn,roleCheker('Administra
             });
 
   })
+  
+  
+  // staff edit confirmation status.
+  //here1
+router.post('/staff_edit_Student_POST',
+isLoggedIn,staffCheker,
+(req,res)=>{
+  //the user role.
+  userRole = req.session.userRole;
+  userRole1 = userRole.toUpperCase();
+  
+  // getting the values::
+  var firstName = req.body.firstName;
+  var middleName = req.body.middleName;
+  var lastName = req.body.lastName;
+  var registrationNo = req.body.registrationNo;
+  var level = req.body.level;
+  var course = req.body.course;
+ var ID = req.body.ID;
+  
+            con.query(`UPDATE STUDENTS  SET ${userRole1}=?  WHERE ID =? `,[level,ID],(err,rows)=>{
+              if (err) throw err;
+              else{
+                
+             res.redirect('/staffView_Students')
+              }
+            });
+
+  })
+  
+  
+  
+  
+  
   
  //administrator edit users Page
   //testing route

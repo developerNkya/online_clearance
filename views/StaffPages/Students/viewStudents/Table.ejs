@@ -1,0 +1,60 @@
+<%- include('../../Home/Header'); -%>
+<%- include('../../Home/navBar'); -%>
+
+
+   <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5 pt-5">
+
+        <h2 class="mb-4">View Students</h2>
+<%- include('searchStudents'); -%>
+        
+<div class="container" style="padding-top:55px">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">FIRSTNAME</th>
+      <th scope="col">LASTNAME</th>
+      <th scope="col">REGISTRATION</th>
+      <th scope="col">COURSE</th>
+      <th scope="col">LEVEL</th>
+      <th scope="col">STATUS</th>
+      <th scope="col">UPDATE</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <% USER.forEach((USER,index, USER_ROLE) => { %>
+    <tr>
+      <th scope="row"><%= index +1 %></th>
+      <td><%=USER.FIRSTNAME %></td>
+      <td><%=USER.LASTNAME %></td>
+      <td><b><%=USER.REGISTRATION %></b></td>
+      <td><%=USER.COURSE %></td>
+      <td><%=USER.LEVEL %></td>
+      <td><%= USER.STATUS %></td>
+      <td> 
+          <form method="post" action="/staff_edit_students">
+            <button type="submit" class="btn btn-primary mb-2" >Edit</button>
+            
+                <input type="text" id="lname" name="regNo" value="<%=USER.REGISTRATION%>" style="display:none">
+              </div>
+          </form> 
+
+      </td>
+    
+    </tr>
+    <% }) %>
+  
+
+  </tbody>
+</table>
+</div>
+        
+        
+          </div>
+		</div>
+
+
+<%- include('../../Home/Footer'); -%>

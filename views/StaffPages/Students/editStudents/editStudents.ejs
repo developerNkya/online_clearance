@@ -1,0 +1,59 @@
+<%- include('../../Home/Header'); -%>
+<%- include('../../Home/navBar'); -%>
+
+ <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5 pt-5">
+
+        <h2 class="mb-4">Edit Students</h2>
+        <div class ="container">
+      <form method= "POST" action="/staff_edit_Student_POST">
+  <div class="form-group">
+    <label for="exampleFormControlInput1">First Name</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="<%=USER.FIRSTNAME %>" name="firstName" readonly>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Middle Name</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="<%=USER.MIDDLENAME%>" name="middleName" readonly>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Last Name</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="<%=USER.LASTNAME %>" name="lastName" readonly>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Registration No</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="<%=USER.REGISTRATION %>" name="registrationNo" readonly>
+  </div>
+  
+  <div class="form-group">
+    <label for="exampleFormControlInput1"> Cartegory</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="<%=USER.LEVEL%>" name="registrationNo" readonly>
+  </div>
+  
+ <div class="form-group">
+    <label for="exampleFormControlInput1"> Course</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="<%=USER.COURSE%>" name="registrationNo" readonly>
+  </div>
+  
+  
+  
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Status</label>
+    <label for="exampleFormControlSelect1"><b>(Currently</b>:<%=STATUS%>)</label>
+    <select class="form-control" id="exampleFormControlSelect1" name="level">
+      <option>CONFIRMED</option>
+      <option>Unapproved</option>
+    </select>
+  </div>
+  
+
+<button type="submit" class="btn btn-primary" style="justify-content:center">Submit</button>
+ <input type="text" id="lname" name="ID" value="<%=USER.ID%>" style="display:none">
+</form>
+</div>
+      </div>
+		</div>
+
+
+
+
+<%- include('../../Home/Footer'); -%>
