@@ -237,25 +237,25 @@ con.query(" SELECT * FROM STUDENTS ",function(err,rows){
    if(userRole1 == 'DEAN'){
      rows.forEach((row,index)=>{
        status.push(
-         Object.values(row)[7]
+         Object.values(row)[8]
          )
      })
    }else if(userRole1 == 'ACCOUNTANT'){
      rows.forEach((row,index)=>{
        status.push(
-         Object.values(row)[8]
+         Object.values(row)[9]
          )
      })
    }else if(userRole1 == 'HOD'){
      rows.forEach((row,index)=>{
        status.push(
-         Object.values(row)[9]
+         Object.values(row)[10]
          )
      })
    }else if(userRole1 == 'LIBRARIAN'){
      rows.forEach((row,index)=>{
        status.push(
-         Object.values(row)[10]
+         Object.values(row)[11]
          )
      })
    }
@@ -271,8 +271,8 @@ rows.forEach((row,index) => {
           "MIDDLENAME":Object.values(row)[2],
           "LASTNAME":Object.values(row)[3],
           "REGISTRATION":Object.values(row)[4],
-          "LEVEL":Object.values(row)[5],
-          "COURSE":Object.values(row)[6],
+          "COURSE":Object.values(row)[7],
+          "LEVEL":Object.values(row)[6],
           "STATUS" : status[index]
          }
          
@@ -438,25 +438,25 @@ isLoggedIn,staffCheker,
    if(userRole1 == 'DEAN'){
      rows.forEach((row,index)=>{
        status.push(
-         Object.values(row)[7]
+         Object.values(row)[8]
          )
      })
    }else if(userRole1 == 'ACCOUNTANT'){
      rows.forEach((row,index)=>{
        status.push(
-         Object.values(row)[8]
+         Object.values(row)[9]
          )
      })
    }else if(userRole1 == 'HOD'){
      rows.forEach((row,index)=>{
        status.push(
-         Object.values(row)[9]
+         Object.values(row)[10]
          )
      })
    }else if(userRole1 == 'LIBRARIAN'){
      rows.forEach((row,index)=>{
        status.push(
-         Object.values(row)[10]
+         Object.values(row)[11]
          )
      })
    }
@@ -515,11 +515,13 @@ isLoggedIn,staffCheker,
   var level = req.body.level;
   var course = req.body.course;
  var ID = req.body.ID;
-  
+           console.log(ID)
+           console.log(userRole1)
+           console.log(level)
             con.query(`UPDATE STUDENTS  SET ${userRole1}=?  WHERE ID =? `,[level,ID],(err,rows)=>{
               if (err) throw err;
               else{
-                
+              
              res.redirect('/staffView_Students')
               }
             });
