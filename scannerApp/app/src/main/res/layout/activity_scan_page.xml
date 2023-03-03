@@ -1,0 +1,306 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    tools:context=".scan_Page">-->
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/iphone_xxs04_activity_constraint_layout_constraint_layout_background_color"
+    tools:context=".scan_Page">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/iphone_xxs04_activity_bg_constraint_layout_height"
+        android:layout_marginEnd="@dimen/iphone_xxs04_activity_bg_constraint_layout_margin_end"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-1dp">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/display_shape_3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"/>
+
+        <View
+            android:layout_width="@dimen/iphone_xxs04_activity_indicator_constraint_layout_width"
+            android:layout_height="@dimen/iphone_xxs04_activity_indicator_constraint_layout_height"
+            android:layout_marginBottom="@dimen/iphone_xxs04_activity_indicator_constraint_layout_margin_bottom"
+            android:background="@color/iphone_xxs04_activity_indicator_constraint_layout_background_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:layout_editor_absoluteX="122dp"
+            tools:layout_editor_absoluteY="796dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/iphone_xxs04_activity_group89_constraint_layout_height"
+        android:background="@color/iphone_xxs05_activity_password_edit_text_text_color"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/iphone_xxs04_activity_group16_constraint_layout_background" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/iphone_xxs04_activity_rectangle47_constraint_layout_height"
+            android:background="#1A1A1A"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/group16_constraint_layout"
+            android:layout_width="345dp"
+            android:layout_height="311dp"
+            android:layout_marginTop="191dp"
+            android:background="@drawable/iphone_xxs04_activity_group16_constraint_layout_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView2">
+
+            <ImageView
+                android:id="@+id/path2035_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:scaleType="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.476"
+                app:srcCompat="@drawable/code" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <Button
+            android:id="@+id/group89_button"
+            android:layout_width="336dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="541dp"
+            android:background="@drawable/iphone_xxs04_activity_group89_button_ripple"
+            android:fontFamily="@font/font_roboto_bold"
+            android:gravity="center"
+            android:text="SCAN"
+            android:textColor="@color/color_click_overlay"
+            android:textSize="@dimen/iphone_xxs04_activity_group89_button_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+        <!--        Table start-->
+        <TableLayout
+            android:id="@+id/TABLE"
+            android:visibility="invisible"
+            android:layout_width="377dp"
+            android:layout_height="91dp"
+            android:stretchColumns="0,1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/group89_button"
+            tools:ignore="MissingConstraints">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:background="#000000"
+
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_column="0"
+                    android:layout_margin="1dp"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:text=" Registration "
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/regNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:layout_margin="1dp"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:text=" "
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textStyle="bold" />
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF">
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:background="#000000">
+
+
+                    </TableRow>
+                </TableRow>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:background="#000000"
+
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_column="0"
+                    android:layout_margin="1dp"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:text=" Course "
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/COURSE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:layout_margin="1dp"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:text=" "
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textStyle="bold" />
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF">
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:background="#000000">
+
+
+                    </TableRow>
+                </TableRow>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:background="#000000"
+
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_column="0"
+                    android:layout_margin="1dp"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:text=" Status "
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/status_R"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:layout_margin="1dp"
+                    android:background="#4CAF50"
+                    android:gravity="center"
+                    android:text=" "
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textStyle="bold" />
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF">
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:background="#000000">
+
+
+                    </TableRow>
+                </TableRow>
+            </TableRow>
+
+
+        </TableLayout>
+
+        <!--    Table end    -->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

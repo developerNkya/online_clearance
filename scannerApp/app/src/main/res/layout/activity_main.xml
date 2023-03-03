@@ -1,60 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <!--text view for heading-->
-    <TextView
-        android:id="@+id/idTVHeader"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/group16_constraint_layout"
+        tools:layout_editor_absoluteY="202dp"
+        android:layout_width="359dp"
+        android:layout_height="306dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="425dp"
+        android:background="@drawable/iphone_xxs04_activity_group16_constraint_layout_background"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/path2035_image_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:gravity="center_horizontal"
-        android:padding="5dp"
-        android:text="Welcome to Scanner \n Login to proceed"
-        android:textAlignment="center"
-        android:textColor="@color/purple_700"
-        android:textSize="18sp" />
+        android:layout_height="match_parent"
+        android:scaleType="center"
+        app:srcCompat="@drawable/code" />
 
-
-
-    <!--edit text for user name-->
-    <EditText
-        android:id="@+id/idEdtUserName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/idTVHeader"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="10dp"
-        android:hint="Enter UserName"
-        android:inputType="textEmailAddress" />
-
-    <!--edit text for user password-->
-    <EditText
-        android:id="@+id/idEdtPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/idEdtUserName"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:hint="Enter Password"
-        android:inputType="textPassword" />
-
-    <!--button to register our new user-->
-    <Button
-        android:id="@+id/idBtnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/idEdtPassword"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:text="Login"
-        android:textAllCaps="false" />
 
 </RelativeLayout>

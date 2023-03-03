@@ -1,8 +1,13 @@
 package com.example.scannerapp;
 
-import android.app.Activity;
+import static android.content.ContentValues.TAG;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,9 +15,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -27,29 +29,23 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import org.json.*;
+import org.w3c.dom.Text;
 
-public class scan_Page extends AppCompatActivity implements View.OnClickListener
-{
+public class scan_Page extends AppCompatActivity implements View.OnClickListener {
 
-    Button scanBtn;
-    TextView messageText, messageFormat;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.scan);
+        setContentView(R.layout.activity_scan_page);
 
-        // referencing and initializing
-        // the button and textviews
-        scanBtn = findViewById(R.id.scanBtn);
-        messageText = findViewById(R.id.textContent);
-        messageFormat = findViewById(R.id.textFormat);
+         Button scanBtn = findViewById(R.id.group89_button);
 
         // adding listener to the button
         scanBtn.setOnClickListener(this);
-
     }
-
     @Override
     public void onClick(View v) {
         // we need to create the object
@@ -73,8 +69,8 @@ public class scan_Page extends AppCompatActivity implements View.OnClickListener
             } else {
                 // if the intentResult is not null we'll set
                 // the content and format of scan message
-                messageText.setText(intentResult.getContents());
-                messageFormat.setText(intentResult.getFormatName());
+//                messageText.setText(intentResult.getContents());
+//                messageFormat.setText(intentResult.getFormatName());
 
                 //Go to api and check if student is registered
                 String url1 = "http://onlineclearance.atwebpages.com/Test.php?REGISTRATION=" + intentResult.getContents();
@@ -113,7 +109,7 @@ public class scan_Page extends AppCompatActivity implements View.OnClickListener
 
                 if(responseCode == HttpURLConnection.HTTP_OK){
                     server_response = readStream(urlConnection.getInputStream());
-                    Log.v("CatalogClient", server_response);
+//                    Log.v("CatalogClient", server_response);
                 }
 
             } catch (MalformedURLException e) {
@@ -129,57 +125,93 @@ public class scan_Page extends AppCompatActivity implements View.OnClickListener
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-            Log.e("Response", "" + server_response);
+            final TextView regNo = (TextView) findViewById(R.id.regNo);
+            final TextView COURSE = (TextView) findViewById(R.id.COURSE);
+            final TextView  status_R = (TextView) findViewById(R.id. status_R);
+            final View v =  findViewById(R.id.TABLE);
 
             //returning toast message::
 
 
+            //Get values of array::
+            try {
+                // Parse the JSON string into a JSONArray object
+                JSONObject jsonArray = new JSONObject(server_response);
+
+                // Loop through each object in the array
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject obj = jsonArray;
+
+                    // Access the values of the object using their keys
+                    int STATUS = obj.getInt("STATUS");
+//                        String name = obj.getString("name");
+//                        int age = obj.getInt("age");
+
+                    // Do something with the values
 
 
 
+                    // If status is 1, print values into the box::
+                    if (STATUS== 1){
+                        int REGISTRATION = obj.getInt("REGISTRATION");
+                        String COURSE_VAL = obj.getString("COURSE");
 
 
-            try
-            {
+                        v.setVisibility(View.VISIBLE);
+                        regNo.setText(String.valueOf(REGISTRATION));
+                        COURSE.setText(COURSE_VAL);
+                        status_R.setText("Registered");
+
+                    }else if (STATUS== 2){
+                        //Show a toast message showing that user is not registered:::
+                        int REGISTRATION = obj.getInt("REGISTRATION");
+                        String COURSE_VAL = obj.getString("COURSE");
 
 
+                        v.setVisibility(View.VISIBLE);
+                        status_R.setBackgroundColor(Color.RED);
+                        regNo.setText(String.valueOf(REGISTRATION));
+                        COURSE.setText(COURSE_VAL);
+                        status_R.setText(" Not- Registered");
 
-                JSONObject jObj = new JSONObject(server_response);
-                if (jObj.getInt("status") == 1)
-                {
-                    System.out.println("Login success");
+                    }else if (STATUS== 3){
+                        // toat to show that student is unknown::::
+                        v.setVisibility(View.GONE);
+                        Log.d(TAG, "unknown");
+                        Toast.makeText( scan_Page.this, "Sanned Code....Uknown", Toast.LENGTH_LONG).show();
 
-                    Log.e("status", "" + "Allowed");
-
-                    //toast
-                    messageText.setText("user exists");
-                    Toast.makeText( scan_Page.this, "Student is registered!", Toast.LENGTH_LONG).show();
-
-
-
-//
-//                    Intent intent = new Intent(MainActivity.this, scan_Page.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    MainActivity.this.startActivity(intent);
-
-
+                    }
 
                 }
-                else
-                {
-                    //System.out.println("Login fail");
-
-                    Log.e("status", "" + "Denied");
-
-                    messageText.setText("user doesnt exists");
-//                    Toast.makeText(MainActivity.this, "Incorrect credidentials...Try again!", Toast.LENGTH_LONG).show();
-                    Toast.makeText( scan_Page.this, "Student is not registered!", Toast.LENGTH_LONG).show();
-
-                }
+            } catch (JSONException e) {
+                // Handle any exceptions that may occur while parsing the JSON string
+                e.printStackTrace();
             }
 
-            catch (JSONException e)
-            {}
+
+//                JSONObject jObj = new JSONObject(server_response);
+//                if (jObj.getInt("status") == 0)
+//                {
+//
+//                    Log.e("status", "" + "Denied");
+//                    Toast.makeText( scan_Page.this, "Student is not registered!", Toast.LENGTH_LONG).show();
+//
+////
+////                    Intent intent = new Intent(MainActivity.this, scan_Page.class);
+////                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+////                    MainActivity.this.startActivity(intent);
+//
+//
+//
+//                }
+//                else
+//                {
+//
+//                    Log.e("status", "Allowed");
+//                    //Acess the object and store values into variables:
+//                    Toast.makeText( scan_Page.this, server_response, Toast.LENGTH_LONG).show();
+//
+//                }
 
         }
 
