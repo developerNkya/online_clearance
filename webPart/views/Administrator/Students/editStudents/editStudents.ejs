@@ -1,0 +1,59 @@
+<%- include('../../Home/Header'); -%>
+<%- include('../../Home/navBar'); -%>
+
+ <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5 pt-5">
+
+        <h2 class="mb-4">Edit Students</h2>
+        <div class ="container">
+      <form method= "POST" action="/administrator_edit_Student_POST">
+  <div class="form-group">
+    <label for="exampleFormControlInput1">First Name</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="<%=USER.FIRSTNAME %>..." name="firstName">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Middle Name</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="<%=USER.MIDDLENAME%>..." name="middleName">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Last Name</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="<%=USER.LASTNAME %>" name="lastName">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Registration No</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="<%=USER.REGISTRATION %>..." name="registrationNo">
+  </div>
+  
+   <div class="form-group">
+    <label for="exampleFormControlInput1">Password</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="<%=USER.PASSWORD %>..." name="password">
+  </div>
+  
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Choose Degree/Diploma</label>
+    <label for="exampleFormControlSelect1"><b>(Currently</b>:<%=USER.LEVEL%>)</label>
+    <select class="form-control" id="exampleFormControlSelect1" name="level">
+      <option>Degree</option>
+      <option>Diploma</option>
+    </select>
+  </div>
+  
+ <div class="form-group">
+    <label for="exampleFormControlSelect1">Select Student Course</label>
+    <label for="exampleFormControlSelect1"><b>(Currently</b>:<%=USER.COURSE%>)</label>
+    <select class="form-control" id="exampleFormControlSelect1" name="course">
+      <option>BACHELOR OF SCIENCE IN COMPUTER SCIENCE</option>
+      <option>DIPLOMA IN CIVIL ENGINEERING</option>
+    </select>
+  </div><br>
+<button type="submit" class="btn btn-primary" style="justify-content:center">Submit</button>
+ <input type="text" id="lname" name="ID" value="<%=USER.ID%>" style="display:none">
+</form>
+</div>
+      </div>
+		</div>
+
+
+
+
+<%- include('../../Home/Footer'); -%>

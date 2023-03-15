@@ -1,0 +1,58 @@
+	<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar">
+				<div class="custom-menu">
+					<button type="button" id="sidebarCollapse" class="btn btn-primary">
+	          <i class="fa fa-bars"></i>
+	          <span class="sr-only">Toggle Menu</span>
+	        </button>
+        </div>
+				<div class="p-4 pt-5">
+		  		<h1><a href="index.html" class="logo">Admin</a></h1>
+	        <ul class="list-unstyled components mb-5">
+           <li>
+	              <a href="/administrator_home">Home</a>
+	          </li>
+	          <li class="active">
+	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Add Users</a>
+	            <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li>
+                    <a href="/administrator_add_students">Students</a>
+                </li>
+				<li>
+                    <a href="/administrator_add_staff">Staffs</a>
+                </li>
+	            </ul>
+	          </li>
+	          
+	          <li>
+              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Edit Users</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu">
+                <li>
+                    <a href="administrator_view_Librarian">Librarians</a>
+                </li>
+				<li>
+                    <a href="/administrator_view_students">Students</a>
+                </li>
+				<li>
+                    <a href="/administrator_view_Dean">Deans</a>
+                </li>
+				<li>
+                    <a href="/administrator_view_HOD">HOD</a>
+                </li>   
+                				<li>
+                    <a href="/administrator_view_Accountant">Accountant</a>
+                </li> 
+              </ul>
+	          </li>
+
+
+	        </ul>
+           
+<form method="post" action="/logout">
+  <label>
+  <input name="submit2" type="submit" id="submit2" value="log out">
+  </label>
+</form>
+
+	      </div>
+    	</nav>

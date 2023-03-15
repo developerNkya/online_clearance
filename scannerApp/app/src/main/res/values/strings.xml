@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">scannerApp</string>
+    <string name="iphone_xxs04_activity_password_edit_text_hint">Password</string>
+    <string name="iphone_xxs04_activity_username_edit_text_hint">Username</string>
+    <string name="iphone_xxs04_activity_group89_button_text">LOGIN</string>
+    <string name="iphone_xxs04_activity_don_thave_an_accoun_button_text">Don’t have an account? SIGN UP</string>
+    <string name="iphone_xxs04_activity_login_text_view_text">LOGIN</string>
+    <string name="iphone_xxs04_activity_forgot_password_button_text">Forgot password?</string>
+    <string name="iphone_xxs04_activity_keep_me_logged_in_text_view_text">Keep me logged in</string>
+    <string name="iphone_xxs04_activity_ranish_chirayil_text_view_text">Scanner App</string>
+
+</resources>

@@ -1,0 +1,87 @@
+<resources>
+
+    <!-- Resources for IPhoneXXS02Activity -->
+
+    <!-- Resources for IPhoneXXS06Activity -->
+
+    <!-- Resources for IPhoneXXS13Activity -->
+
+    <!-- Resources for IPhoneXXS10Activity -->
+
+    <!-- Resources for IPhoneXXS01Activity -->
+
+    <!-- Resources for IPhoneXXS12Activity -->
+
+    <!-- Resources for IPhoneXXS04Activity -->
+    <dimen name="iphone_xxs04_activity_indicator_constraint_layout_width">134dp</dimen>
+    <dimen name="iphone_xxs04_activity_rc_logo_constraint_layout_margin_end">-18dp</dimen>
+    <dimen name="iphone_xxs04_activity_indicator_constraint_layout_margin_bottom">12dp</dimen>
+    <dimen name="iphone_xxs04_activity_password_edit_text_width">262dp</dimen>
+    <dimen name="iphone_xxs04_activity_bg_constraint_layout_height">813dp</dimen>
+    <dimen name="iphone_xxs04_activity_group21_constraint_layout_margin_top">29dp</dimen>
+    <dimen name="iphone_xxs04_activity_ranish_chirayil_text_view_margin_top">11dp</dimen>
+    <dimen name="iphone_xxs04_activity_forgot_password_button_margin_end">41dp</dimen>
+    <dimen name="iphone_xxs04_activity_login_text_view_margin_start">38dp</dimen>
+    <dimen name="iphone_xxs04_activity_group16_constraint_layout_radius">5dp</dimen>
+    <dimen name="iphone_xxs04_activity_rc_logo_constraint_layout_margin_top">136dp</dimen>
+    <dimen name="iphone_xxs04_activity_don_thave_an_accoun_button_width">173dp</dimen>
+    <dimen name="iphone_xxs04_activity_rc_logo_constraint_layout_height">155dp</dimen>
+    <dimen name="iphone_xxs04_activity_keep_me_logged_in_text_view_margin_top">12dp</dimen>
+    <dimen name="iphone_xxs04_activity_password_edit_text_margin_start">23dp</dimen>
+    <dimen name="iphone_xxs04_activity_group89_button_width">300dp</dimen>
+    <dimen name="iphone_xxs04_activity_login_text_view_text_size">14sp</dimen>
+    <dimen name="iphone_xxs04_activity_username_edit_text_text_size">14sp</dimen>
+    <dimen name="iphone_xxs04_activity_don_thave_an_accoun_button_text_size">12sp</dimen>
+    <dimen name="iphone_xxs04_activity_group21_constraint_layout_width">300dp</dimen>
+    <dimen name="iphone_xxs04_activity_group16_constraint_layout_border_size">0dp</dimen>
+    <dimen name="iphone_xxs04_activity_forgot_password_button_height">16dp</dimen>
+    <dimen name="iphone_xxs04_activity_group89_button_height">52dp</dimen>
+    <dimen name="iphone_xxs04_activity_group16_constraint_layout_width">300dp</dimen>
+    <dimen name="iphone_xxs04_activity_forgot_password_button_margin_top">12dp</dimen>
+    <dimen name="iphone_xxs04_activity_username_edit_text_margin_start">19dp</dimen>
+    <dimen name="iphone_xxs04_activity_group21_constraint_layout_radius">5dp</dimen>
+    <dimen name="iphone_xxs04_activity_group89_button_text_size">16sp</dimen>
+    <dimen name="iphone_xxs04_activity_subtraction2_image_view_margin_top">15dp</dimen>
+    <dimen name="iphone_xxs04_activity_forgot_password_button_width">96dp</dimen>
+    <dimen name="iphone_xxs04_activity_bg_constraint_layout_margin_end">0dp</dimen>
+    <dimen name="iphone_xxs04_activity_don_thave_an_accoun_button_margin_bottom">96dp</dimen>
+    <dimen name="iphone_xxs04_activity_group16_constraint_layout_margin_top">18dp</dimen>
+    <dimen name="iphone_xxs04_activity_group89_button_radius">5dp</dimen>
+    <dimen name="iphone_xxs04_activity_username_edit_text_height">20dp</dimen>
+    <dimen name="iphone_xxs04_activity_ranish_chirayil_text_view_margin_start">57dp</dimen>
+    <dimen name="iphone_xxs04_activity_group89_button_margin_top">28dp</dimen>
+    <dimen name="iphone_xxs04_activity_rectangle47_constraint_layout_height">566dp</dimen>
+    <dimen name="iphone_xxs04_activity_indicator_constraint_layout_height">5dp</dimen>
+    <dimen name="iphone_xxs04_activity_keep_me_logged_in_text_view_margin_start">5dp</dimen>
+    <dimen name="iphone_xxs04_activity_password_edit_text_text_size">14sp</dimen>
+    <dimen name="iphone_xxs04_activity_group21_constraint_layout_height">52dp</dimen>
+    <dimen name="iphone_xxs04_activity_subtraction1_image_view_margin_top">29dp</dimen>
+    <dimen name="iphone_xxs04_activity_rc_logo_constraint_layout_width">293dp</dimen>
+    <dimen name="iphone_xxs04_activity_ranish_chirayil_text_view_text_size">10sp</dimen>
+    <dimen name="iphone_xxs04_activity_don_thave_an_accoun_button_height">16dp</dimen>
+    <dimen name="iphone_xxs04_activity_group21_constraint_layout_border_size">0dp</dimen>
+    <dimen name="iphone_xxs04_activity_subtraction2_image_view_margin_start">39dp</dimen>
+    <dimen name="iphone_xxs04_activity_group16_constraint_layout_height">52dp</dimen>
+    <dimen name="iphone_xxs04_activity_forgot_password_button_text_size">12sp</dimen>
+    <dimen name="iphone_xxs04_activity_password_edit_text_height">20dp</dimen>
+    <dimen name="iphone_xxs04_activity_username_edit_text_width">257dp</dimen>
+    <dimen name="iphone_xxs04_activity_keep_me_logged_in_text_view_text_size">12sp</dimen>
+    <dimen name="iphone_xxs04_activity_group89_constraint_layout_height">812dp</dimen>
+    <dimen name="iphone_xxs04_activity_login_text_view_margin_top">338dp</dimen>
+
+    <!-- Resources for IPhoneXXS05Activity -->
+
+    <!-- Resources for IPhoneXXS15Activity -->
+
+    <!-- Resources for IPhoneXXS11Activity -->
+
+    <!-- Resources for IPhoneXXS09Activity -->
+
+    <!-- Resources for IPhoneXXS14Activity -->
+
+    <!-- Resources for IPhoneXXS16Activity -->
+
+    <!-- Resources for IPhoneXXS07Activity -->
+
+    <!-- Resources for IPhoneXXS03Activity -->
+</resources>

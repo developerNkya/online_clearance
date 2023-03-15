@@ -1,0 +1,55 @@
+<%- include('../../Home/Header'); -%>
+<%- include('../../Home/navBar'); -%>
+
+
+   <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5 pt-5">
+
+        <h2 class="mb-4">View <%=ROLE %> </h2>
+<%- include('searchStaff'); -%>
+        
+<div class="container" style="padding-top:55px">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">FIRST NAME</th>
+      <th scope="col">LAST NAME</th>
+      <th scope="col">REGISTRATION</th>
+      <th scope="col">ROLE</th>
+
+
+      
+    </tr>
+  </thead>
+  <tbody>
+    <% USER.forEach((USER,index) => { %>
+    <tr>    
+        <th scope="row"><%= index +1 %></th> 
+        <td><%=USER.FIRST_NAME %></td>
+        <td><%=USER.LAST_NAME %></td>
+        <td name='regNo'><%=USER.REG_NO %></td>
+        <td><b><%=USER.ROLE %></b></td>
+        <td> 
+        
+          <form method="post" action="/administrator_edit_users">
+            <button type="submit" class="btn btn-primary mb-2" >Edit</button>
+            
+                <input type="text" id="lname" name="regNo" value="<%=USER.REG_NO%>" style="display:none">
+              </div>
+          </form>
+          
+        </td>   
+    </tr>
+    <% }) %>
+
+  </tbody>
+</table>
+</div>
+        
+        
+          </div>
+		</div>
+
+
+<%- include('../../Home/Footer'); -%>

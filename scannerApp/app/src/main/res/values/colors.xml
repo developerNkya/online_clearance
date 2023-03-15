@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="black">#FF000000</color>
+
+    <!--    new added colors below-->
+
+
+    <!--    Added values-->
+    <!-- Project level resources -->
+    <color name="color_hint_text">#D0D1D5</color>
+    <color name="color_click_overlay">#555555</color>
+
+    <!-- Resources for IPhoneXXS01Activity -->
+
+    <!-- Resources for IPhoneXXS07Activity -->
+
+    <!-- Resources for IPhoneXXS02Activity -->
+
+    <!-- Resources for IPhoneXXS16Activity -->
+
+    <!-- Resources for IPhoneXXS13Activity -->
+
+    <!-- Resources for IPhoneXXS10Activity -->
+
+    <!-- Resources for IPhoneXXS14Activity -->
+
+    <!-- Resources for IPhoneXXS03Activity -->
+
+    <!-- Resources for IPhoneXXS12Activity -->
+
+    <!-- Resources for IPhoneXXS15Activity -->
+
+    <!-- Resources for IPhoneXXS06Activity -->
+
+    <!-- Resources for IPhoneXXS09Activity -->
+
+    <!-- Resources for IPhoneXXS04Activity -->
+    <color name="iphone_xxs04_activity_indicator_constraint_layout_background_color">#E2E8ED</color>
+    <color name="iphone_xxs04_activity_group16_constraint_layout_border_color">#98FFFFFF</color>
+    <color name="iphone_xxs04_activity_constraint_layout_constraint_layout_background_color">#FFFFFF</color>
+    <color name="iphone_xxs04_activity_username_edit_text_background_color">#00000000</color>
+    <color name="iphone_xxs04_activity_ranish_chirayil_text_view_text_color">#FCFCFC</color>
+    <color name="iphone_xxs04_activity_password_edit_text_background_color">#00000000</color>
+    <color name="iphone_xxs04_activity_don_thave_an_accoun_button_text_color">#FFFFFF</color>
+    <color name="iphone_xxs04_activity_group21_constraint_layout_border_color">#98FFFFFF</color>
+
+    <!-- Resources for IPhoneXXS05Activity -->
+    <color name="iphone_xxs05_activity_password_edit_text_text_color">#576F93</color>
+
+    <!-- Resources for IPhoneXXS11Activity -->
+</resources>
