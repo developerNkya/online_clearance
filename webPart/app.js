@@ -2,6 +2,7 @@
 const express = require('express')
 const app = express()
 const port = 5000
+const fileUpload = require('express-fileupload');
 
 var flash = require('connect-flash');
 var sessions = require('express-session')
@@ -32,7 +33,7 @@ app.use(bodyParser.json())
 
 app.use(flash()); 
 
-
+app.use(fileUpload());
 // declaring the views path
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

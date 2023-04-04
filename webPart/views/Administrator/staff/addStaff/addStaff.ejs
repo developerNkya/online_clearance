@@ -6,6 +6,21 @@
 
         <h2 class="mb-4">Add Users</h2>
         <div class ="container">
+
+          <p>Select from excel</p>
+          <!-- Adding through bulk data -->
+          <form action="/administrator_add_Staff_Excel_Post" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+            <input type="file" name="file" id="file-input" />
+            <button type="submit" id="import-button" disabled>Import</button>
+          </form><br><br>
+          <!-- Xcel ends here -->
+          <p>Import a single staff</p>
+
+
+
+
+
+
       <form method= "POST" action="/administrator_add_Staff_POST">
   <div class="form-group" >
     <label for="exampleFormControlInput1">First Name</label>
@@ -44,7 +59,32 @@
       </div>
 		</div>
 
-
+    <script>
+      function validateForm() {
+        const fileInput = document.getElementById('file-input');
+        const fileName = fileInput.value;
+        const fileExt = fileName.split('.').pop();
+    
+        if (fileExt !== 'xlsx' && fileExt !== 'xls') {
+          alert('Please select a valid Excel file.');
+          return false;
+        }
+    
+        return true;
+      }
+    
+      const fileInput = document.getElementById('file-input');
+      const importButton = document.getElementById('import-button');
+    
+      fileInput.addEventListener('change', () => {
+        if (fileInput.value) {
+          importButton.disabled = false;
+        } else {
+          importButton.disabled = true;
+        }
+      });
+    </script>
+    
 
 
 <%- include('../../Home/Footer'); -%>

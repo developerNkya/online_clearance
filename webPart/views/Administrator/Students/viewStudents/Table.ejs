@@ -24,9 +24,10 @@
   </thead>
   <tbody>
     
-    <% USER.forEach((USER,index) => { %>
+    <% rows.forEach(( USER,index) => { %>
     <tr>
-      <th scope="row"><%= index +1 %></th>
+      <!-- <th scope="row"><%= index +1 %></th> -->
+      <th scope="row"><%= USER.ID %></th>
       <td><%=USER.FIRSTNAME %></td>
       <td><%=USER.LASTNAME %></td>
       <td><b><%=USER.REGISTRATION %></b></td>
@@ -47,12 +48,41 @@
   
 
   </tbody>
+  <nav>
+    <ul class="pagination">
+      <% if (currentPage > 1) { %>
+        <li class="page-item " >
+          <a class="page-link" href="?page=<%= currentPage - 1 %>">Previous</a>
+        </li>
+      <% } %>
+  
+      <% for (let i = 1; i <= pageCount; i++) { %>
+        <% if (i === currentPage) { %>
+          <li class="page-item active">
+            <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+          </li>
+        <% } else { %>
+          <li class="page-item">
+            <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+          </li>
+        <% } %>
+      <% } %>
+  
+      <% if (currentPage < pageCount) { %>
+        <li class="page-item">
+          <a class="page-link" href="?page=<%= currentPage + 1 %>">Next</a>
+        </li>
+      <% } %>
+    </ul>
+  </nav>
 </table>
 </div>
         
         
           </div>
 		</div>
+
+    
 
 
 <%- include('../../Home/Footer'); -%>
