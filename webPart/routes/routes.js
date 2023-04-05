@@ -467,7 +467,7 @@ router.get('/administrator_add_students',isLoggedIn,roleCheker('Administrator'),
   //Adding to database:::
   dbPostsQuerries.adminAddStudent(firstName,middleName,lastName,registrationNo,password,level,course);
 
-    res.redirect('/administrator_add_students')
+    res.redirect('/administrator_view_students')
   })
 
 
@@ -496,7 +496,7 @@ router.get('/administrator_add_students',isLoggedIn,roleCheker('Administrator'),
   }
 
    
-  res.redirect('/administrator_add_students')
+  res.redirect('/administrator_view_students')
   })
 
 
@@ -536,7 +536,25 @@ router.post('/administrator_add_Staff_POST',isLoggedIn,roleCheker('Administrator
               if (err) throw err;
               else{
                 
-             res.redirect('/administrator_add_staff')
+
+              // redirecting to the particular route:::
+                      // check role and redirect to specific page:::
+              var role = req.body.role;
+              if (role == 'Librarian') {
+              url_redirect('/administrator_view_Librarian')
+              } else if(role == 'Dean'){
+              url_redirect('/administrator_view_Dean')
+              }else if(role == 'HOD'){
+              url_redirect('/administrator_view_HOD')
+              }else if(role == 'Accountant'){
+              url_redirect('/administrator_view_Accountant')
+              }
+
+
+                    // This function will aid moving to specific route basing on the entered role::::
+              function url_redirect(url) {
+                res.redirect(url)
+              }
               }
             });
 
@@ -557,13 +575,30 @@ router.post('/administrator_add_Staff_Excel_POST',isLoggedIn,roleCheker('Adminis
     // Inserting to db:::
     const insertQuery = 'INSERT INTO STAFF (FIRST_NAME,LAST_NAME,REG_NO,PASS,ROLE) VALUES (?,?,?,?,?) ';
     for (const record of data) {
-      const values = [record.FIRST_NAME, record.LAST_NAME,record.REG_NO,record.PASS,record.ROLE,record.LEVEL];
+      const values = [record.FIRST_NAME, record.LAST_NAME,record.REG_NO,record.PASS,record.ROLE];
       con.query(insertQuery, values, (err, result) => {
         if (err) {
           console.error(err);
         } else {
+        
+        // check role and redirect to specific page:::
+        var role = record.ROLE;
+         if (role == 'Librarian') {
+          url_redirect('/administrator_view_Librarian')
+         } else if(role == 'Dean'){
+          url_redirect('/administrator_view_Dean')
+         }else if(role == 'HOD'){
+          url_redirect('/administrator_view_HOD')
+         }else if(role == 'Accountant'){
+          url_redirect('/administrator_view_Accountant')
+         }
+
+        // This function will aid moving to specific route basing on the entered role::::
+        function url_redirect(url) {
           console.log('Record inserted:', result.insertId);
-                   res.redirect('/administrator_add_staff')
+          res.redirect(url)
+        }
+
         }
       });
     }
